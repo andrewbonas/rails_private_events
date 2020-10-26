@@ -11,6 +11,18 @@
   </head>
 
   <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <div class="container">
+        <%= link_to"Private Events", root_path, class: "navbar-brand" %>
+          <ul class="navbar-nav mr-right">
+            <li class="nav mr-auto">
+              <%= link_to 'Sign up', new_user_path(@user), class: "nav-link" %>
+              <%= link_to 'Sign In', new_user_path(@user), class: "nav-link" %>
+            </li>
+          </ul>
+    
+      </div>
+    </nav>
     <div class="container">
       <%= yield %>
     </div>
