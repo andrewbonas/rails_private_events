@@ -6,13 +6,27 @@ class UsersController < ApplicationController
 
   def new
   @user = User.new
- end
+  end
 
- def create
+  def create
+    @user = User.new(user_params)
 
- end
+    respond_to do | format |
+      if @user.save
+        format.html {redirect_to root_path, notice: 'User was successfully created.'}
+      else
+        format.html { render :new, notice: 'Invalid, please try again.'}
+      end
+    end
+  end
 
- def show
+  def show
 
- end
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:name, :username)
+  end
 end
