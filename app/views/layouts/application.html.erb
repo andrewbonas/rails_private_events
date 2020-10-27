@@ -16,13 +16,23 @@
         <%= link_to"Private Events", root_path, class: "navbar-brand" %>
           <ul class="navbar-nav mr-right">
             <li class="nav mr-auto">
-              <%= link_to 'Sign up', new_user_path(@user), class: "nav-link" %>
-              <%= link_to 'Sign In', new_user_path(@user), class: "nav-link" %>
+              <% if current_user %>
+                <%= link_to current_user.name, root_path, class: "nav-link text-light px-2" %>
+                <%= link_to "Log Out", logout_path, class: "nav-link px-2" %>
+              <% else %>  
+              <%= link_to 'Sign up', new_user_path(@user), class: "nav-link px-2" %>
+              <%= link_to 'Sign In',  login_path, class: "nav-link px-2" %>
+            <% end %>
             </li>
           </ul>
-    
       </div>
-    </nav>
+       </nav>
+      <% flash.each do |key, value| %>
+        <div class="<%= flash_class(key) %>">
+          <%= value %>
+        </div>
+      <% end %>
+   
     <div class="container">
       <%= yield %>
     </div>
