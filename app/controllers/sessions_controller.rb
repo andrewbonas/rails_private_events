@@ -4,10 +4,10 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by_name(params[:name])
-    if user
-        session[:user_id] = user.id
-        redirect_to root_url, notice: "Logged In!"
+    @user = User.find_by(name: params[:name])
+    if @user
+        session[:user_id] = @user.id
+        redirect_to root_path, notice: "Logged In!"
     else
         flash.now[:alert] = 'Invalid name'
         render "new"
@@ -18,5 +18,4 @@ class SessionsController < ApplicationController
     session[:user_id] = nil
     redirect_to root_url, notice: "Logged Out!"
   end
-
 end

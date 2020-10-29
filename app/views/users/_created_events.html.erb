@@ -1,0 +1,24 @@
+<% if @user.nil? %>
+    <% provide(:created_events, 'Not Found') %>
+    No Events
+    <% else %>
+
+<% @user.created_events.order(:date).reverse.each do | event | %>
+  <tr>
+    <p>
+    <td><%= event.title %></td>
+    <td><%= event.date.strftime('%b %d %y') unless event.date.nil? %></td>
+    <td>
+    <% if !event.date.nil? && event.date < Time.now %>
+    Past
+    <%else%>
+    Upcoming
+    <% end %>
+    </td>
+      <td><%= event.title %></td>
+      <td><%= event.description %></td>
+      <td><%= event.date %></td>
+    </p>
+    <% end %>
+  </tr>
+<% end %>

@@ -2,8 +2,7 @@
   <%= form_with(model: user, local: true) do |form| %>
   <% if user.errors.any? %>
     <div id="error_explanation">
-     <h2><%= pluralize(user.errors.count, "error")%> prohibited this user from being created:</h2>
-
+     <p><%= pluralize(user.errors.count, "error")%> prohibited this user from being created:</p>
      <ul>
      <% user.errors.full_messages.each do |message| %>
        <li><%= message %></li>
