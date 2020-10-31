@@ -4,5 +4,12 @@
      <td><%= event.date.strftime('%b %d %y') unless event.date.nil? %></td>
      <td><%= event.description %></td>
      <td><%= User.find(event.creator_id).name %>
+     <td>
+     <% unless event.attendees.include?(User.find_by(id: session[:user_id])) %>
+       <%= link_to 'Attend', invitations_path(event.id), method: "POST" %>
+     <% else %>
+       Attending
+     <% end %>
+     </td>
   </tr>
 <% end %>
