@@ -1,0 +1,10 @@
+<%@past_events.each do | event | %>
+  <tr>
+     <td><%= event.title %></td>
+     <td><%= event.date.strftime('%b %d %y') unless event.date.nil? %></td>
+     <td><%= event.description %></td>
+     <td><%= User.find(event.creator_id).name %>
+     <td>
+     </td>
+  </tr>
+<% end %>

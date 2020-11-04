@@ -1,8 +1,8 @@
 class InvitationsController < ApplicationController
   def create
-    @invitation = Invitation.new
-    @invitation.save
+    @event = Event.find(params[:id])
+    @user = current_user
+    @event.attendees << @user
+    redirect_to root_path
   end
-  
-
 end

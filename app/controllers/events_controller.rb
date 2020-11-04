@@ -3,8 +3,8 @@ class EventsController < ApplicationController
     before_action :set_event, only: %i[show edit update destroy]
 
   def index
-    @events = Event.all
     @upcoming_events = Event.upcoming_events
+    @past_events = Event.past_events
   end
 
   def show
@@ -34,6 +34,16 @@ class EventsController < ApplicationController
 
   def destroy
 
+  end
+
+  def rsvp
+    @event = Event.find(params[:id])
+    if @event.attendees.include?(current_user)
+      redirect_to root_path, notice: "You are already on the list"
+    else
+      @event.attendees << current_user
+      redirect_to events_path
+    end
   end
 
   private
