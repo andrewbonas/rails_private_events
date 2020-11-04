@@ -15,10 +15,6 @@ class EventsController < ApplicationController
     @event = Event.new
   end
   
-  def edit
-
-  end
-
   def create
 
     @event = current_user.created_events.build(event_params)
@@ -30,10 +26,6 @@ class EventsController < ApplicationController
         format.html { render :new }
       end
     end
-  end
-
-  def destroy
-
   end
 
   def rsvp
@@ -48,7 +40,6 @@ class EventsController < ApplicationController
 
   private
 
- 
   def event_params
     params.require(:event).permit(:title, :description, :date)
   end
